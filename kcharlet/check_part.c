@@ -19,13 +19,13 @@ static int	tet_one(char *str, int i)
 	int		col;
 	int		row;
 
-	while (str[i] != '\0')
+	while (str[i])
 	{
 		row = 1;
 		while (row < 5)
 		{
 			col = 1;
-			while (str[i] != '\n')
+			while (str[i])
 			{
 				col++;
 				i++;
@@ -35,9 +35,36 @@ static int	tet_one(char *str, int i)
 			row++;
 			i++;
 		}
-		if (str[i] != '\0')
+		if (str[i])
 			return (1);
 	}
+	return (0);
+}
+
+static int	tet_multiple(char *str, int tet)
+{
+	int		i;
+	int		col;
+	int		row;
+
+	i = -1;
+	while (tet-- != 1 && str[++i] != '\0')
+	{
+		row = 0;
+		while (++row < 5)
+		{
+			col = 1;
+			while (str[i] != '\n' && col++ >= 0)
+				i++;
+			if (col != 5)
+				return (1);
+			i++;
+		}
+		if ((row == 5) && (str[i] != '\n'))
+			return (1);
+	}
+	if (tet == 1 & str[i] != '\0')
+		tet_one(str, i);
 	return (0);
 }
 

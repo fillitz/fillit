@@ -20,7 +20,7 @@ char			*extraction_of_tetramino(char *filename)
 	int			read_ret;
 	int			tetramino_size;
 
-	tetramino_size = 21 + 1;
+	tetramino_size = 22;
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 		ft_error();
