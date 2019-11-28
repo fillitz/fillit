@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_extract_tetrimino.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zlucan <zlucan@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/28 15:38:05 by zlucan            #+#    #+#             */
+/*   Updated: 2019/11/28 15:38:05 by zlucan           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/fillit.h"
 
 /*
@@ -43,7 +55,8 @@ static char		*ft_append_str(void *ptr, size_t size)
 	void		*newptr; /* новый указатель */
 	size_t		old_size; /* старый размер */
 
-	newptr = (char*)malloc(sizeof(char) * size); /* задаём память новому указателю */
+	if(!(newptr = ((char*)malloc(sizeof(char) * size)))) /* задаём память новому указателю */
+		return (NULL);
 	ft_memset(newptr, 0, size); /* зануляем */
 	old_size = ft_strlen(ptr); /* старый размер измеряем */
 	ft_memcpy(newptr, ptr, old_size); /* копируем из старого в новый */

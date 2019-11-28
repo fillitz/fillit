@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_if_valid.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zlucan <zlucan@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/28 15:38:53 by zlucan            #+#    #+#             */
+/*   Updated: 2019/11/28 15:38:53 by zlucan           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/fillit.h"
 
 /*
@@ -72,7 +84,8 @@ static t_char		*count_chars(char *str, int i)
 {
 	t_char			*count;
 
-	count = (t_char*)malloc(sizeof(t_char));
+	if(!(count = ((t_char*)malloc(sizeof(t_char)))))
+		return (NULL);
 	count->hash = 0;
 	count->dot = 0;
 	count->newline = 0;

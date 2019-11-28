@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_colrow.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zlucan <zlucan@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/28 15:39:01 by zlucan            #+#    #+#             */
+/*   Updated: 2019/11/28 15:39:01 by zlucan           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/fillit.h"
 
 /*
@@ -11,7 +23,7 @@ static int	tet_one(char *str, int i)
 	int		col;
 	int		row;
 
-	while (str[i])
+	while (str[i] != '\0')
 	{
 		row = 1;
 		while (row < 5)
@@ -27,7 +39,7 @@ static int	tet_one(char *str, int i)
 			row++;
 			i++;
 		}
-		if (str[i])
+		if (str[i] != '\0')
 			return (1);
 	}
 	return (0);
@@ -41,7 +53,7 @@ static int	tet_multiple(char *str, int tet)
 	int		row;
 
 	i = -1;
-	while (tet-- != 1 && str[++i])
+	while (tet-- != 1 && str[++i] != '\0')
 	{
 		row = 0;
 		while (++row < 5)
@@ -56,7 +68,7 @@ static int	tet_multiple(char *str, int tet)
 		if ((row == 5) && (str[i] != '\n'))
 			return (1);
 	}
-	if (tet == 1 && str[i])
+	if (tet == 1 && str[i] != '\0')
 		tet_one(str, i);
 	return (0);
 }

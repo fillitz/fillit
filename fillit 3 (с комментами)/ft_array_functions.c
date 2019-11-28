@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_array_functions.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zlucan <zlucan@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/28 15:37:52 by zlucan            #+#    #+#             */
+/*   Updated: 2019/11/28 15:37:52 by zlucan           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/fillit.h"
 
 /*
@@ -13,11 +25,13 @@ char			**ft_new_array(int x, int y)
 	int		j;
 
 	j = 0;
-	array = (char**)malloc(sizeof(char*) * (y + 1));
+	if(!(array = ((char**)malloc(sizeof(char*) * (y + 1)))))
+		return (NULL);
 	while (j < y)
 	{
 		i = 0;
-		array[j] = (char*)malloc(sizeof(char) * (x + 1));
+		if(!(array[j] = ((char*)malloc(sizeof(char) * (x + 1)))))
+			return (NULL);
 		while (i < x)
 		{
 			array[j][i] = '.';
