@@ -1,11 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_tetrimino_functions.c                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zlucan <zlucan@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/28 15:05:59 by zlucan            #+#    #+#             */
+/*   Updated: 2019/11/28 15:05:59 by zlucan           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/fillit.h"
 
 static t_tet	*ft_create_tetrimino(void)
 {
 	t_tet *piece;
 
-	piece = (t_tet*)malloc(sizeof(t_tet));
-	if (piece == NULL)
+	if (!(piece = ((t_tet*)malloc(sizeof(t_tet)))))
 		return (NULL);
 	return (piece);
 }
@@ -55,7 +66,8 @@ t_tet			**ft_read_all_tetrimino(char *tetrimino)
 	char	c;
 
 	count = (ft_strlen(tetrimino) + 1) / 21;
-	puzzle = (t_tet**)malloc(sizeof(t_tet*) * (count + 1));
+	if(!(puzzle = ((t_tet**)malloc(sizeof(t_tet*) * (count + 1)))))
+		return (NULL);
 	i = 0;
 	j = 0;
 	c = 'A';

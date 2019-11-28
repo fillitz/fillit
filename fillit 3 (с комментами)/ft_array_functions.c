@@ -52,7 +52,8 @@ t_map			*ft_starting_map(char *tetrimino)
 
 	x = ft_starting_size(tetrimino);
 	y = x;
-	map = (t_map*)malloc(sizeof(t_map));
+	if (!(map = ((t_map*)malloc(sizeof(t_map)))))
+		return (NULL);
 	map->array = ft_new_array(x, y);
 	map->xmax = x;
 	map->ymax = y;
@@ -68,7 +69,8 @@ t_map			*ft_resize_map(t_map *old_map)
 	x = old_map->xmax + 1;
 	y = old_map->ymax + 1;
 	ft_free_map(old_map);
-	map = (t_map*)malloc(sizeof(t_map));
+	if(!(map = ((t_map*)malloc(sizeof(t_map)))))
+		return (NULL);
 	map->array = ft_new_array(x, y);
 	map->xmax = x;
 	map->ymax = y;

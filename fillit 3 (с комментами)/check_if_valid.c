@@ -5,6 +5,7 @@
 ** Total number of times we should find a neighbor is 6.
 */
 
+/* считаем соседей */
 static int			count_neighbor(char *map, int i)
 {
 	int				n;
@@ -25,6 +26,7 @@ static int			count_neighbor(char *map, int i)
 ** Checks the number of #s and if adjacency is valid
 */
 
+/* проверяем решетки */
 int					check_hash(char *str)
 {
 	int				hash;
@@ -53,6 +55,7 @@ int					check_hash(char *str)
 	return (0);
 }
 
+/* проверяем то, что посчитали */
 static int			check_chars(t_char *count)
 {
 	if (count->hash < 4)
@@ -64,6 +67,7 @@ static int			check_chars(t_char *count)
 		return (0);
 }
 
+/* считаем количество каждого знака */
 static t_char		*count_chars(char *str, int i)
 {
 	t_char			*count;
@@ -85,6 +89,7 @@ static t_char		*count_chars(char *str, int i)
 	return (count);
 }
 
+/* валидация */
 int					main_check(char *str)
 {
 	t_char			*count;

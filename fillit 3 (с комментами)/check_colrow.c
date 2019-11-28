@@ -5,12 +5,13 @@
 **depending on if there are one tetrimino or more than one
 */
 
+/* одна тетрамина */
 static int	tet_one(char *str, int i)
 {
 	int		col;
 	int		row;
 
-	while (str[i] != '\0')
+	while (str[i])
 	{
 		row = 1;
 		while (row < 5)
@@ -26,12 +27,13 @@ static int	tet_one(char *str, int i)
 			row++;
 			i++;
 		}
-		if (str[i] != '\0')
+		if (str[i])
 			return (1);
 	}
 	return (0);
 }
 
+/* несколько тетрамин */
 static int	tet_multiple(char *str, int tet)
 {
 	int		i;
@@ -39,7 +41,7 @@ static int	tet_multiple(char *str, int tet)
 	int		row;
 
 	i = -1;
-	while (tet-- != 1 && str[++i] != '\0')
+	while (tet-- != 1 && str[++i])
 	{
 		row = 0;
 		while (++row < 5)
@@ -54,11 +56,12 @@ static int	tet_multiple(char *str, int tet)
 		if ((row == 5) && (str[i] != '\n'))
 			return (1);
 	}
-	if (tet == 1 && str[i] != '\0')
+	if (tet == 1 && str[i])
 		tet_one(str, i);
 	return (0);
 }
 
+/* интерфейс для выбора одной из двух верхних функций */
 int			check_colrow(char *str, int tet)
 {
 	int val;

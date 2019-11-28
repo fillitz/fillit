@@ -6,6 +6,7 @@
 **and that the new size is getting bigger, not smaller
 */
 
+/* проверка адекватности знаков */
 static int		legal_char(char *str)
 {
 	int		i;
@@ -20,6 +21,7 @@ static int		legal_char(char *str)
 	return (0);
 }
 
+/* валидация */
 static int		check_if_valid(char *str)
 {
 //	int			len;
@@ -35,39 +37,41 @@ static int		check_if_valid(char *str)
 		return (0);
 }
 
+/* присоединяем стринг */
 static char		*ft_append_str(void *ptr, size_t size)
 {
-	void		*newptr;
-	size_t		old_size;
+	void		*newptr; /* новый указатель */
+	size_t		old_size; /* старый размер */
 
-	newptr = (char*)malloc(sizeof(char) * size);
-	ft_memset(newptr, 0, size);
-	old_size = ft_strlen(ptr);
-	ft_memcpy(newptr, ptr, old_size);
-	free(ptr);
-	return (newptr);
+	newptr = (char*)malloc(sizeof(char) * size); /* задаём память новому указателю */
+	ft_memset(newptr, 0, size); /* зануляем */
+	old_size = ft_strlen(ptr); /* старый размер измеряем */
+	ft_memcpy(newptr, ptr, old_size); /* копируем из старого в новый */
+	free(ptr); /* освобождаем указатель */
+	return (newptr); /* ретюрн */
 }
 
+/* извлечение тетрамино */
 char			*ft_extract_tetrimino(char *filename)
 {
-	char		*tetrimino;
-	char		*temp;
-	int			fd;
-	int			ret;
-	int			size;
+	char		*tetrimino; /* массив содержащий совокупность тетрамин */
+	char		*temp; /* временный буфер */
+	int			fd; /* фдшник */
+	int			ret; /* ретурн рида */
+	int			size; /* число, обозначающее максимальное значение функции  */
 
-	size = 22;
-	fd = open(filename, O_RDONLY);
-	tetrimino = ft_strnew(21);
-	temp = ft_strnew(21);
-	while ((ret = read(fd, temp, 21)))
+	size = 22; /* 21 + 1 */
+	fd = open(filename, O_RDONLY); /* опеним фдшник */
+	tetrimino = ft_strnew(21); /* задаём память тетрамино */
+	temp = ft_strnew(21); /* задаём память буферу */
+	while ((ret = read(fd, temp, 21))) /* читаем */
 	{
-		ft_strcat(tetrimino, temp);
-		size += 21;
-		tetrimino = ft_append_str(tetrimino, size);
-		ft_memset(temp, 0, 21);
+		ft_strcat(tetrimino, temp); /* присоединяем рибосому */
+		size += 21; /* увеличиваем размер */
+		tetrimino = ft_append_str(tetrimino, size); /* тетрамино меняется функцией */
+		ft_memset(temp, 0, 21); /* зануляем */
 	}
-	if (check_if_valid(tetrimino))
+	if (check_if_valid(tetrimino)) /* валидация */
 	{
 		ft_putstr("error\n");
 		exit(1);

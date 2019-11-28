@@ -27,16 +27,17 @@ static int		ft_backtracking(t_tet **pieces, t_map *map, int i)
 	return (0);
 }
 
+/* непосредственно филлит */
 char			**ft_fillit(char *tetrimino)
 {
-	t_tet	**pieces;
-	t_map	*map;
+	t_tet	**pieces; /* фигуры */
+	t_map	*map; /* карта */
 
-	pieces = ft_read_all_tetrimino(tetrimino);
-	map = ft_starting_map(tetrimino);
-	while (!ft_backtracking(pieces, map, 0))
+	pieces = ft_read_all_tetrimino(tetrimino); /* тетрамины считываем */
+	map = ft_starting_map(tetrimino); /*  */
+	while (!ft_backtracking(pieces, map, 0)) /*  */
 	{
-		map = ft_resize_map(map);
+		map = ft_resize_map(map); /*  */
 	}
-	return (map->array);
+	return (map->array); /*  */
 }
