@@ -23,13 +23,7 @@ static int			count_neighbor(char *map, int i)
 	int				n;
 
 	n = 0;
-	if (map[i - 1] == '#')
-		n++;
-	if (map[i - 5] == '#')
-		n++;
-	if (map[i + 1] == '#')
-		n++;
-	if (map[i + 5] == '#')
+	if (map[i - 1] == '#' || map[i - 5] == '#' || map[i + 1] == '#' || map[i + 5] == '#')
 		n++;
 	return (n);
 }
@@ -103,12 +97,14 @@ static t_char		*count_chars(char *str, int i)
 }
 
 /* валидация */
-int					main_check(char *str)
+int					check_if_valid(char *str)
 {
 	t_char			*count;
 	int				i;
 	int				tet;
 
+	if (!(legal_char(str) || check_hash(str)))
+		return (1);
 	i = 0;
 	tet = 0;
 	count = count_chars(str, i);

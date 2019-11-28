@@ -33,22 +33,6 @@ static int		legal_char(char *str)
 	return (0);
 }
 
-/* валидация */
-static int		check_if_valid(char *str)
-{
-//	int			len;
-
-//	len = ft_strlen(str);
-	if (legal_char(str))
-		return (1);
-	if (main_check(str))
-		return (1);
-	if (check_hash(str))
-		return (1);
-	else
-		return (0);
-}
-
 /* присоединяем стринг */
 static char		*ft_append_str(void *ptr, size_t size)
 {
@@ -64,6 +48,12 @@ static char		*ft_append_str(void *ptr, size_t size)
 	return (newptr); /* ретюрн */
 }
 
+void	ft_error()
+{
+	ft_putstr("error\n");
+	exit(1);
+}
+
 /* извлечение тетрамино */
 char			*ft_extract_tetrimino(char *filename)
 {
@@ -74,20 +64,21 @@ char			*ft_extract_tetrimino(char *filename)
 	int			size; /* число, обозначающее максимальное значение функции  */
 
 	size = 22; /* 21 + 1 */
+	if (fd == -1)
+		ft_error();
 	fd = open(filename, O_RDONLY); /* опеним фдшник */
 	tetrimino = ft_strnew(21); /* задаём память тетрамино */
 	temp = ft_strnew(21); /* задаём память буферу */
 	while ((ret = read(fd, temp, 21))) /* читаем */
 	{
+		if (ret == -1)
+			ft_error();
 		ft_strcat(tetrimino, temp); /* присоединяем рибосому */
 		size += 21; /* увеличиваем размер */
 		tetrimino = ft_append_str(tetrimino, size); /* тетрамино меняется функцией */
 		ft_memset(temp, 0, 21); /* зануляем */
 	}
 	if (check_if_valid(tetrimino)) /* валидация */
-	{
-		ft_putstr("error\n");
-		exit(1);
-	}
+		ft_error();
 	return (tetrimino);
 }
